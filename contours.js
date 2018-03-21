@@ -102,8 +102,8 @@ function reverseTransform() {
 };
 
 var color = d3.scaleLinear()
-  .domain([0, 6000])
-  .range(["#a4ad9d", "#e5d9c9"])
+  .domain([-6000, -3000, -1000, 0, 1000, 3000, 6000])
+  .range(['#FF0000', '#FF7F00', '#FFFF00', '#00FF00', '#0000FF', '#4B0082', '#9400D3'])
   .interpolate(d3.interpolateHcl);
 
 function getRelief(){
@@ -160,14 +160,15 @@ function getRelief(){
   */
 
   contoursGeoData = contour(values);
-
+/*
   if (min < 0) {
     // include blue bathymetric colors if anything is below sea level
-    color.domain([min,-1,0,max]).range(['#12405e', '#a3c9e2', '#486341', '#e5d9c9'])
+    color.domain([min,-1,0,max]).range(['#FF0000', '#FFFF00', '#0000FF', '#9400D3'])
   } else {
     // otherwise just a green to tan range
-    color.domain([min,max]).range(["#486341", "#e5d9c9"])
+    color.domain([min,max]).range(["#FF0000", "#9400D3"])
   }
+  */
 
   drawContours();
 }
@@ -189,10 +190,10 @@ function drawContours() {
     contourContext.beginPath();
     if (c.value < 0) {
       // blue-ish shadow and highlight colors below sea level
-      contourContext.shadowColor = '#4e5c66';
+      contourContext.shadowColor = '#FF0000';
       contourContext.strokeStyle = 'rgba(224, 242, 255, .25)';
     } else {
-      contourContext.shadowColor = '#5b5143';
+      contourContext.shadowColor = '#FF0000';
       contourContext.strokeStyle = 'rgba(255, 250, 234,.25)';
     }
     contourContext.fillStyle = color(c.value);
